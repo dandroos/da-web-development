@@ -3,8 +3,7 @@ import { Button } from "@material-ui/core"
 import { ScrollLink } from "react-scroll"
 
 const NavLink = props => {
-  const { children, isEnd, endIcon, id } = props
-  console.log(props)
+  const { children, isEnd, endIcon } = props
   return (
     <Button
       {...props}

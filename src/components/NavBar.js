@@ -6,7 +6,6 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  Button,
   Box,
   MenuItem,
   Hidden,
@@ -16,21 +15,34 @@ import {
   Grow,
   Paper,
   ClickAwayListener,
+  makeStyles,
 } from "@material-ui/core"
 import { Menu as MenuIcon, ArrowDropDown } from "@material-ui/icons"
 
-import { animateScroll, scroller, Link } from "react-scroll"
 import NavLink from "./NavLink"
 
 import navigation from "../navigation"
 import { setMobileNav } from "../state/actions"
+import { animateScroll } from "react-scroll"
+
+const useStyles = makeStyles({
+  button: {
+    "&.active": {
+      fontWeight: "bold",
+    },
+  },
+})
 
 const NavBar = ({ dispatch }) => {
+  const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
 
   const handleClick = e => {
     const { id } = e.currentTarget
     switch (id) {
+      case "logo":
+        animateScroll.scrollToTop()
+        break
       case "external":
         setAnchorEl(e.currentTarget)
         break
@@ -48,18 +60,6 @@ const NavBar = ({ dispatch }) => {
         break
       default:
         break
-    }
-  }
-
-  const handleScroll = (id = null) => {
-    if (id) {
-      scroller.scrollTo(`${id}-section`, {
-        activeClass: "Mui-selected",
-        spy: true,
-        smooth: true,
-      })
-    } else {
-      animateScroll.scrollToTop()
     }
   }
 
@@ -141,7 +141,7 @@ const NavBar = ({ dispatch }) => {
                   disablePortal
                   placement="bottom-end"
                 >
-                  {({ TransitionProps, placement }) => (
+                  {({ TransitionProps }) => (
                     <Grow {...TransitionProps}>
                       <Paper variant="outlined">
                         <ClickAwayListener onClickAway={handleClose}>
@@ -171,11 +171,13 @@ const NavBar = ({ dispatch }) => {
               </NavLink>
             ) : (
               <NavLink
-                activeClass="MASSIVECOCK"
-                to={`${i.href}-section`}
+                activeClass="active"
+                to={i.href}
+                offset={-48}
                 smooth={true}
                 spy={true}
-                id={i.href}
+                hashSpy={true}
+                className={classes.button}
               >
                 {i.label}
               </NavLink>

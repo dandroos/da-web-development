@@ -12,15 +12,25 @@ import {
   useTheme,
   IconButton,
   Tooltip,
+  makeStyles,
 } from "@material-ui/core"
+import MobileNavLink from "../MobileNavLink"
 import { Close, ExpandLess, ExpandMore } from "@material-ui/icons"
 
 import { animateScroll, scroller } from "react-scroll"
 import navigation from "../../navigation"
 import { setMobileNav } from "../../state/actions"
 
+const useStyles = makeStyles({
+  button: {
+    "&.active": {
+      fontWeight: "bold",
+    },
+  },
+})
+
 const MobileMenu = ({ dispatch, isOpen }) => {
-  const [expanded, setExpanded] = useState(false)
+  const classes = useStyles()
   const data = useStaticQuery(graphql`
     {
       site {
@@ -40,15 +50,6 @@ const MobileMenu = ({ dispatch, isOpen }) => {
   const handleClick = e => {
     const { id } = e.currentTarget
     switch (id) {
-      case "about":
-      case "pricing":
-      case "contact":
-        handleScroll(id)
-        break
-      case "home":
-      case "logo":
-        handleScroll()
-        break
       case "facebook":
         window.open(`https://facebook.com`, "_blank")
         break
@@ -61,14 +62,6 @@ const MobileMenu = ({ dispatch, isOpen }) => {
         break
     }
     dispatch(setMobileNav(false))
-  }
-
-  const handleScroll = (id = null) => {
-    if (id) {
-      scroller.scrollTo(`${id}-section`, { smooth: true })
-    } else {
-      animateScroll.scrollToTop()
-    }
   }
 
   return (
@@ -111,12 +104,16 @@ const MobileMenu = ({ dispatch, isOpen }) => {
                 ))}
               </ListItem>
             ) : (
-              <ListItem button onClick={handleClick} id={i.label.toLowerCase()}>
-                <ListItemText
-                  primary={i.label.toLowerCase()}
-                  primaryTypographyProps={{ align: "center" }}
-                />
-              </ListItem>
+              <MobileNavLink
+                activeClass="active"
+                to={i.href}
+                offset={i.label === "Home" ? 0 : -48}
+                smooth={true}
+                spy={true}
+                hashSpy={true}
+                className={classes.button}
+                label={i.label}
+              />
             )
           )}
         </List>

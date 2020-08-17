@@ -4,8 +4,7 @@ import Anchor from "./Anchor"
 
 const Section = ({ children, id, color }) => {
   return (
-    <Box minHeight="100vh" bgcolor={color} position="relative">
-      <Anchor id={id} />
+    <Box id={id} minHeight="100vh" bgcolor={color} position="relative">
       {children}
     </Box>
   )

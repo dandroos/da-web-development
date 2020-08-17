@@ -5,6 +5,7 @@ import { Info } from "@material-ui/icons"
 const Hero = () => {
   return (
     <Box
+      id="home"
       minHeight="100vh"
       display="flex"
       flexDirection="column"
