@@ -113,6 +113,7 @@ const MobileMenu = ({ dispatch, isOpen }) => {
                 hashSpy={true}
                 className={classes.button}
                 label={i.label}
+                onClick={handleClose}
               />
             )
           )}

@@ -8,7 +8,7 @@ const NavLink = props => {
     <Button
       {...props}
       endIcon={endIcon ? endIcon : null}
-      style={{ textTransform: "lowercase", marginRight: isEnd ? 0 : 20 }}
+      style={{ marginRight: isEnd ? 0 : 20 }}
     >
       {children}
     </Button>

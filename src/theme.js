@@ -32,6 +32,16 @@ const theme = createMuiTheme({
         boxShadow: "none",
       },
     },
+    MuiButton: {
+      root: {
+        textTransform: "lowercase",
+      },
+    },
+    MuiTypography: {
+      root: {
+        textTransform: "lowercase",
+      },
+    },
   },
 })
 
