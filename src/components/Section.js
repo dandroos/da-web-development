@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Container, Typography } from "@material-ui/core"
 import Anchor from "./Anchor"
 
-const Section = ({ children, id, title, color }) => {
+const Section = ({ children, id, title, color, shade }) => {
   return (
     <Box
       id={id}
@@ -10,12 +10,15 @@ const Section = ({ children, id, title, color }) => {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      bgcolor={color}
+      bgcolor={`${color}.${shade}`}
+      color={`${color}.contrastText`}
       position="relative"
       py={3}
     >
       <Container>
-        <Typography variant="h2">{title}</Typography>
+        <Typography variant="h2" paragraph>
+          {title}
+        </Typography>
         {children}
       </Container>
     </Box>

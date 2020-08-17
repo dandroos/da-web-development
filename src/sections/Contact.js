@@ -17,7 +17,7 @@ const Contact = () => {
   const handleChange = e => {}
 
   return (
-    <Section id="contact" title="Contact" color="secondary.dark">
+    <Section id="contact" title="Contact" color="secondary" shade="dark">
       <Grid container justify="center" alignItems="center" spacing={2}>
         <Grid item xs={12} md={6}>
           <Typography variant="h5">Hours</Typography>

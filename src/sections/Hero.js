@@ -1,6 +1,7 @@
 import React from "react"
 import { Box, Typography, Button, Container, Grid } from "@material-ui/core"
 import { Info } from "@material-ui/icons"
+import svg from "../images/hero.svg"
 
 const Hero = () => {
   return (
@@ -12,10 +13,9 @@ const Hero = () => {
       justifyContent="flex-end"
       position="relative"
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1585076641399-5c06d1b3365f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=968&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1901')",
+        backgroundImage: `url('${svg}')`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "top",
       }}
     >
       <Box
@@ -24,8 +24,8 @@ const Hero = () => {
         right={0}
         bottom={0}
         left={0}
-        bgcolor="common.black"
-        style={{ opacity: 0.6 }}
+        bgcolor="secondary.dark"
+        style={{ opacity: 0.8 }}
       />
       <Container>
         <Box mb={8} position="relative" borderRadius="borderRadius">

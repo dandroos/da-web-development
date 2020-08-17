@@ -40,6 +40,7 @@ const theme = createMuiTheme({
     MuiTypography: {
       root: {
         textTransform: "lowercase",
+        cursor: "default",
       },
     },
   },
