@@ -31,7 +31,7 @@ function SEO({ description, lang, meta, title }) {
       htmlAttributes={{
         lang,
       }}
-      title={site.siteMetadata.title.toLowerCase()}
+      title={`${site.siteMetadata.title.toLowerCase()} web development`}
       meta={[
         {
           name: `description`,

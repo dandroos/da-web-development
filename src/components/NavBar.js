@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import {
   AppBar,
   Toolbar,
-  Typography,
   IconButton,
   Box,
   MenuItem,
@@ -24,6 +24,8 @@ import NavLink from "./NavLink"
 import navigation from "../navigation"
 import { setMobileNav } from "../state/actions"
 import { animateScroll } from "react-scroll"
+
+import Reveal from "./Reveal"
 
 const useStyles = makeStyles({
   button: {
@@ -77,9 +79,18 @@ const NavBar = ({ dispatch }) => {
 
   const data = useStaticQuery(graphql`
     {
-      site {
-        siteMetadata {
-          title
+      notAtTop: file(name: { eq: "logo" }) {
+        childImageSharp {
+          fixed(width: 125, quality: 100) {
+            ...GatsbyImageSharpFixed_noBase64
+          }
+        }
+      }
+      atTop: file(name: { eq: "logo" }) {
+        childImageSharp {
+          fixed(height: 55, quality: 100) {
+            ...GatsbyImageSharpFixed_noBase64
+          }
         }
       }
     }
@@ -90,101 +101,110 @@ const NavBar = ({ dispatch }) => {
       color={atTop ? "transparent" : "primary"}
       style={{ transition: "all .2s" }}
     >
-      <Toolbar
-        variant={atTop ? "regular" : "dense"}
-        style={{ transition: "all .2s" }}
-      >
-        <Typography
-          variant="h6"
-          id="logo"
-          onClick={handleClick}
-          style={{ cursor: "pointer" }}
+      <Reveal order={0}>
+        <Toolbar
+          variant={atTop ? "regular" : "dense"}
+          style={{ transition: "all .2s" }}
         >
-          {data.site.siteMetadata.title.toLowerCase()}
-        </Typography>
-        <Box flexGrow={1} />
-        <Hidden mdUp>
-          <IconButton edge="end" id="mob-menu" onClick={handleClick}>
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
-        <Hidden smDown>
-          {navigation.map((i, ind) =>
-            i.dropdown ? (
-              <>
-                {ind === navigation.length - 1 ? (
-                  <NavLink
-                    id={i.label.toLowerCase()}
-                    isEnd
-                    onClick={handleClick}
-                    endIcon={
-                      <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
-                    }
-                  >
-                    {i.label}
-                  </NavLink>
-                ) : (
-                  <NavLink
-                    id={i.label.toLowerCase()}
-                    onClick={handleClick}
-                    endIcon={
-                      <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
-                    }
-                  >
-                    {i.label}
-                  </NavLink>
-                )}
-                <Popper
-                  open={Boolean(anchorEl)}
-                  anchorEl={anchorEl}
-                  transition
-                  disablePortal
-                  placement="bottom-end"
-                >
-                  {({ TransitionProps }) => (
-                    <Grow {...TransitionProps}>
-                      <Paper variant="outlined">
-                        <ClickAwayListener onClickAway={handleClose}>
-                          <MenuList disablePadding>
-                            {i.links.map(link => (
-                              <MenuItem
-                                dense
-                                id={link.label.toLowerCase()}
-                                onClick={handleClick}
-                              >
-                                <ListItemIcon>
-                                  <link.icon />
-                                </ListItemIcon>
-                                {link.label.toLowerCase()}
-                              </MenuItem>
-                            ))}
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-              </>
-            ) : ind === navigation.length - 1 ? (
-              <NavLink onClick={handleClick} isEnd={true} id={i.href}>
-                {i.label}
-              </NavLink>
-            ) : (
-              <NavLink
-                activeClass="active"
-                to={i.href}
-                offset={-48}
-                smooth={true}
-                spy={true}
-                hashSpy={true}
-                className={classes.button}
-              >
-                {i.label}
-              </NavLink>
-            )
+          {atTop ? (
+            <Img
+              fixed={data.atTop.childImageSharp.fixed}
+              style={{
+                marginTop: "1.5rem",
+              }}
+            />
+          ) : (
+            <Box id="logo" onClick={handleClick}>
+              <Img
+                style={{ display: "block", cursor: "pointer" }}
+                fixed={data.notAtTop.childImageSharp.fixed}
+              />
+            </Box>
           )}
-        </Hidden>
-      </Toolbar>
+          <Box flexGrow={1} />
+          <Hidden mdUp>
+            <IconButton edge="end" id="mob-menu" onClick={handleClick}>
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+          <Hidden smDown>
+            {navigation.map((i, ind) =>
+              i.dropdown ? (
+                <>
+                  {ind === navigation.length - 1 ? (
+                    <NavLink
+                      id={i.label.toLowerCase()}
+                      isEnd
+                      onClick={handleClick}
+                      endIcon={
+                        <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
+                      }
+                    >
+                      {i.label}
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      id={i.label.toLowerCase()}
+                      onClick={handleClick}
+                      endIcon={
+                        <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
+                      }
+                    >
+                      {i.label}
+                    </NavLink>
+                  )}
+                  <Popper
+                    open={Boolean(anchorEl)}
+                    anchorEl={anchorEl}
+                    transition
+                    disablePortal
+                    placement="bottom-end"
+                  >
+                    {({ TransitionProps }) => (
+                      <Grow {...TransitionProps}>
+                        <Paper variant="outlined">
+                          <ClickAwayListener onClickAway={handleClose}>
+                            <MenuList disablePadding>
+                              {i.links.map(link => (
+                                <MenuItem
+                                  dense
+                                  id={link.label.toLowerCase()}
+                                  onClick={handleClick}
+                                >
+                                  <ListItemIcon>
+                                    <link.icon />
+                                  </ListItemIcon>
+                                  {link.label.toLowerCase()}
+                                </MenuItem>
+                              ))}
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
+                </>
+              ) : ind === navigation.length - 1 ? (
+                <NavLink onClick={handleClick} isEnd={true} id={i.href}>
+                  {i.label}
+                </NavLink>
+              ) : (
+                <NavLink
+                  activeClass="active"
+                  to={i.href}
+                  offset={-48}
+                  smooth={true}
+                  spy={true}
+                  hashSpy={true}
+                  className={classes.button}
+                >
+                  {i.label}
+                </NavLink>
+              )
+            )}
+          </Hidden>
+        </Toolbar>
+      </Reveal>
     </AppBar>
   )
 }

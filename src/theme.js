@@ -40,8 +40,11 @@ const theme = createMuiTheme({
     MuiTypography: {
       root: {
         textTransform: "lowercase",
-        cursor: "default",
       },
+    },
+    MuiTableCell: {
+      root: { textTransform: "lowercase" },
+      head: { fontWeight: 600 },
     },
   },
 })

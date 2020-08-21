@@ -1,1 +1,3 @@
+export const SET_SITE_IS_READY = "SET_SITE_IS_READY"
 export const SET_MOBILE_NAV = "SET_MOBILE_NAV"
+export const SET_DO_I_NEED_A_SITE = "SET_DO_I_NEED_A_SITE"

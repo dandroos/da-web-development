@@ -1,7 +1,12 @@
+const { Facebook } = require("@material-ui/icons")
+
 module.exports = {
   siteMetadata: {
-    title: `D.A. Web Dev`,
-    description: `D.A. Web Dev build websites and applications to a professional standard.`,
+    title: `prospr`,
+    description: `we build professional websites and applications.`,
+    externalLinks: [
+      { label: "Facebook", link: "https://www.facebook.com", icon: Facebook },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

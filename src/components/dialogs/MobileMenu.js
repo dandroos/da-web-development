@@ -1,23 +1,21 @@
-import React, { useState } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import {
   Dialog,
   Box,
   List,
   ListItem,
-  ListItemText,
   Fab,
-  Typography,
   useTheme,
   IconButton,
   Tooltip,
   makeStyles,
 } from "@material-ui/core"
 import MobileNavLink from "../MobileNavLink"
-import { Close, ExpandLess, ExpandMore } from "@material-ui/icons"
+import { Close } from "@material-ui/icons"
 
-import { animateScroll, scroller } from "react-scroll"
 import navigation from "../../navigation"
 import { setMobileNav } from "../../state/actions"
 
@@ -33,9 +31,11 @@ const MobileMenu = ({ dispatch, isOpen }) => {
   const classes = useStyles()
   const data = useStaticQuery(graphql`
     {
-      site {
-        siteMetadata {
-          title
+      logo: file(name: { eq: "logo" }) {
+        childImageSharp {
+          fluid(maxWidth: 350) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
         }
       }
     }
@@ -44,23 +44,6 @@ const MobileMenu = ({ dispatch, isOpen }) => {
   const theme = useTheme()
 
   const handleClose = () => {
-    dispatch(setMobileNav(false))
-  }
-
-  const handleClick = e => {
-    const { id } = e.currentTarget
-    switch (id) {
-      case "facebook":
-        window.open(`https://facebook.com`, "_blank")
-        break
-      case "instagram":
-        window.open(`https://instagram.com`, "_blank")
-        break
-      case "github":
-        window.open(`https://github.com`, "_blank")
-      default:
-        break
-    }
     dispatch(setMobileNav(false))
   }
 
@@ -85,9 +68,10 @@ const MobileMenu = ({ dispatch, isOpen }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="h3" paragraph>
-          {data.site.siteMetadata.title.toLowerCase()}
-        </Typography>
+        <Img
+          style={{ maxWidth: 350, width: "60%", marginBottom: "1rem" }}
+          fluid={data.logo.childImageSharp.fluid}
+        />
         <List disablePadding>
           {navigation.map(i =>
             i.dropdown ? (
@@ -95,7 +79,10 @@ const MobileMenu = ({ dispatch, isOpen }) => {
                 {i.links.map(link => (
                   <Tooltip title={link.label}>
                     <IconButton
-                      onClick={handleClick}
+                      onClick={() => {
+                        window.open(link.href, "_blank")
+                        dispatch(setMobileNav(false))
+                      }}
                       id={link.label.toLowerCase()}
                     >
                       <link.icon />

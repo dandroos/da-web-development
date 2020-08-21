@@ -1,4 +1,4 @@
-import { Facebook, GitHub, Instagram } from "@material-ui/icons"
+import externalLinks from "./externals"
 
 export default [
   {
@@ -7,7 +7,7 @@ export default [
     dropdown: false,
   },
   {
-    label: "Offers",
+    label: "Pricing",
     href: "pricing",
     dropdown: false,
   },
@@ -25,22 +25,6 @@ export default [
     label: "External",
     href: "",
     dropdown: true,
-    links: [
-      {
-        label: "Facebook",
-        href: "https://www.facebook.com",
-        icon: Facebook,
-      },
-      {
-        label: "Instagram",
-        href: "https://www.instagram.com/fuertenerd",
-        icon: Instagram,
-      },
-      {
-        label: "GitHub",
-        href: "https://www.github.com/dandroos",
-        icon: GitHub,
-      },
-    ],
+    links: externalLinks,
   },
 ]

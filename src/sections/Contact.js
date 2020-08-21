@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, createRef } from "react"
 import {
   Box,
   Grid,
@@ -14,39 +14,94 @@ import { Send, Phone, Email, WhatsApp } from "@material-ui/icons"
 import Section from "../components/Section"
 
 const Contact = () => {
-  const handleChange = e => {}
+  const form = createRef()
+
+  const [fields, setFields] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+  const handleChange = e => {
+    setFields({
+      ...fields,
+      [e.currentTarget.id]: e.currentTarget.value,
+    })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    const encode = data => {
+      return Object.keys(data)
+        .map(
+          key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+        )
+        .join("&")
+    }
+
+    const contactForm = form.current
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": contactForm.getAttribute("name"),
+        ...fields,
+      }),
+    })
+      .then(() => {
+        setFields({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        })
+        //set message})
+      })
+      .catch(error => console.log(error))
+  }
+  const contactDetails = {
+    phone: {
+      display: "(+34) 658 858 572",
+      data: "34658858572",
+    },
+    email: "enquiries@prospr.dev",
+  }
 
   return (
     <Section id="contact" title="Contact" color="secondary" shade="dark">
       <Grid container justify="center" alignItems="center" spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography variant="h5">Hours</Typography>
+          <Typography variant="h5">Contact Hours</Typography>
           <Typography variant="caption">(All times are GMT)</Typography>
           <Typography paragraph>
-            Weekdays: 8am - 6pm
+            Weekdays: 8am - 8pm
             <br />
-            Saturday: 8am - 1pm
+            Saturday: 10am - 1pm
           </Typography>
           <Typography variant="h5">Out of hours</Typography>
           <Typography variant="" paragraph>
             For urgent enquiries you can phone me at any time. For non-urgent
-            enquiries, please call during my working hours. Thank you.
+            enquiries, please call during the above hours. Thank you.
           </Typography>
           <List>
             <ContactMethod
               Icon={Phone}
               primaryText="Phone"
-              secondaryText="123 456 789"
+              secondaryText={contactDetails.phone.display}
+              link={`tel:+${contactDetails.phone.data}`}
             />
             <ContactMethod
               Icon={WhatsApp}
               primaryText="WhatsApp"
-              secondaryText="123 456 789"
+              secondaryText={contactDetails.phone.display}
+              link={`https://wa.me/${contactDetails.phone.data}`}
             />
             <ContactMethod
               Icon={Email}
               primaryText="Email"
-              secondaryText="david@dawebdev.com"
+              secondaryText={contactDetails.email}
+              link={`mailto:${contactDetails.email}`}
               noDivider
             />
           </List>
@@ -55,59 +110,85 @@ const Contact = () => {
           <Typography>
             You can send me a message using the below form...
           </Typography>
-          <TextField
-            variant="outlined"
-            margin="dense"
-            label="name"
-            onChange={handleChange}
-            id="name"
-            fullWidth
-          />
-          <TextField
-            variant="outlined"
-            margin="dense"
-            label="email"
-            onChange={handleChange}
-            id="email"
-            fullWidth
-          />
-          <TextField
-            variant="outlined"
-            margin="dense"
-            label="phone"
-            placeholder="optional"
-            onChange={handleChange}
-            id="email"
-            fullWidth
-          />
-          <TextField
-            multiline
-            margin="dense"
-            variant="outlined"
-            label="message"
-            onChange={handleChange}
-            id="message"
-            rows={4}
-            fullWidth
-          />
-          <Box align="right">
-            <Button
-              startIcon={<Send />}
-              color="primary"
-              variant="contained"
-              size="large"
-            >
-              send
-            </Button>
-          </Box>
+          <form
+            ref={form}
+            onSubmit={handleSubmit}
+            name="contact"
+            data-netlify="true"
+          >
+            <TextField
+              variant="outlined"
+              margin="dense"
+              label="name"
+              onChange={handleChange}
+              value={fields.name}
+              id="name"
+              required
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              type="email"
+              margin="dense"
+              label="email"
+              onChange={handleChange}
+              value={fields.email}
+              id="email"
+              required
+              fullWidth
+            />
+            <TextField
+              variant="outlined"
+              margin="dense"
+              label="phone"
+              placeholder="optional"
+              onChange={handleChange}
+              value={fields.phone}
+              id="email"
+              fullWidth
+            />
+            <TextField
+              multiline
+              margin="dense"
+              variant="outlined"
+              label="message"
+              onChange={handleChange}
+              value={fields.message}
+              id="message"
+              required
+              rows={4}
+              fullWidth
+            />
+            <Box align="right">
+              <Button
+                startIcon={<Send />}
+                type="submit"
+                color="primary"
+                variant="contained"
+                size="large"
+              >
+                send
+              </Button>
+            </Box>
+          </form>
         </Grid>
       </Grid>
     </Section>
   )
 }
 
-const ContactMethod = ({ Icon, primaryText, secondaryText, noDivider }) => (
-  <ListItem button divider={!noDivider}>
+const ContactMethod = ({
+  Icon,
+  primaryText,
+  secondaryText,
+  link,
+  noDivider,
+}) => (
+  <ListItem
+    button
+    divider={!noDivider}
+    onClick={() => window.open(link, "blank")}
+  >
     <ListItemIcon>
       <Icon />
     </ListItemIcon>
