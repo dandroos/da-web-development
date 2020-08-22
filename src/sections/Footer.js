@@ -1,7 +1,8 @@
 import React from "react"
-import { Box, Typography, Link } from "@material-ui/core"
+import { Box, Typography, Link, Hidden } from "@material-ui/core"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import Reveal from "../components/Reveal"
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -25,21 +26,33 @@ const Footer = () => {
     }
   }
   return (
-    <Box my={3} align="center">
-      <Img
-        style={{ width: "30%", maxWidth: 200 }}
-        fluid={data.logo.childImageSharp.fluid}
-      />
-      <Box mt={2}>
-        <Typography display="block" paragraph>
-          All content &copy; {getCopyrightYear()} prospr web development
-        </Typography>
-        <Typography display="block" variant="caption">
-          Problems viewing the site? Please{" "}
-          <Link href="mailto:maintenance@prospr.dev">Report it</Link>.
-        </Typography>
+    <Reveal>
+      <Box my={3} align="center">
+        <Img
+          style={{ width: "30%", maxWidth: 200 }}
+          fluid={data.logo.childImageSharp.fluid}
+        />
+        <Box mt={2}>
+          <Typography variant="caption" display="block" paragraph>
+            All content &copy; {getCopyrightYear()} prospr web development
+          </Typography>
+          <Typography variant="caption" display="block" paragraph>
+            Illustration courtesy of{" "}
+            <Link href="https://www.freepik.com" target="_blank">
+              Freepik
+            </Link>
+            .
+          </Typography>
+          <Typography display="block" variant="caption">
+            Problems viewing the site? Please{" "}
+            <Link href="mailto:maintenance@prospr.dev">Report it</Link>.
+          </Typography>
+        </Box>
+        <Hidden smUp>
+          <Box height={56} />
+        </Hidden>
       </Box>
-    </Box>
+    </Reveal>
   )
 }
 

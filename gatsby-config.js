@@ -1,12 +1,10 @@
-const { Facebook } = require("@material-ui/icons")
+const colors = require("./src/colors")
 
 module.exports = {
   siteMetadata: {
     title: `prospr`,
     description: `we build professional websites and applications.`,
-    externalLinks: [
-      { label: "Facebook", link: "https://www.facebook.com", icon: Facebook },
-    ],
+    siteUrl: `https://prospr.dev`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,10 +23,10 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: colors.primary,
+        theme_color: colors.primary,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

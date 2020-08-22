@@ -38,7 +38,7 @@ const About = () => {
           <Box
             p={1}
             bgcolor="common.white"
-            style={{ boxShadow: "0 2rem 1rem inset" }}
+            style={{ boxShadow: "0 0 .4rem inset" }}
           >
             <Img fluid={data.file.childImageSharp.fluid} />
           </Box>
