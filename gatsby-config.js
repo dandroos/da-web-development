@@ -2,8 +2,8 @@ const colors = require("./src/colors")
 
 module.exports = {
   siteMetadata: {
-    title: `prospr`,
-    description: `we build professional websites and applications.`,
+    title: `prospr web development`,
+    description: `delivering professional websites and web applications`,
     siteUrl: `https://prospr.dev`,
   },
   plugins: [
