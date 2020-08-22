@@ -124,6 +124,7 @@ const Contact = () => {
               onChange={handleChange}
               value={fields.name}
               id="name"
+              name="name"
               required
               fullWidth
             />
@@ -135,6 +136,7 @@ const Contact = () => {
               onChange={handleChange}
               value={fields.email}
               id="email"
+              name="email"
               required
               fullWidth
             />
@@ -145,7 +147,8 @@ const Contact = () => {
               placeholder="optional"
               onChange={handleChange}
               value={fields.phone}
-              id="email"
+              id="phone"
+              name="phone"
               fullWidth
             />
             <TextField
@@ -156,6 +159,7 @@ const Contact = () => {
               onChange={handleChange}
               value={fields.message}
               id="message"
+              name="message"
               required
               rows={4}
               fullWidth
