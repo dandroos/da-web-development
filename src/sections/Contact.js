@@ -109,6 +109,7 @@ const Contact = () => {
           </Typography>
           <form
             name="contact"
+            action="#"
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
