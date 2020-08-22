@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "prospr-web-development",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "delivering professional websites and web applications",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "prospr web development <enquiries@prospr.dev>",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",

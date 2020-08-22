@@ -110,7 +110,13 @@ const Contact = () => {
           <Typography>
             You can send me a message using the below form...
           </Typography>
-          <form ref={form} onSubmit={handleSubmit} name="contact" netlify>
+          <form
+            ref={form}
+            onSubmit={handleSubmit}
+            name="contact"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
             <TextField
               variant="outlined"
               margin="dense"
