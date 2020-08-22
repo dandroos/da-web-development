@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react"
+import React, { useState } from "react"
 import {
   Box,
   Grid,
@@ -14,8 +14,6 @@ import { Send, Phone, Email, WhatsApp } from "@material-ui/icons"
 import Section from "../components/Section"
 
 const Contact = () => {
-  const form = createRef()
-
   const [fields, setFields] = useState({
     name: "",
     email: "",
@@ -40,12 +38,11 @@ const Contact = () => {
         .join("&")
     }
 
-    const contactForm = form.current
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": contactForm.getAttribute("name"),
+        "form-name": "contact",
         ...fields,
       }),
     })
@@ -110,14 +107,7 @@ const Contact = () => {
           <Typography>
             You can send me a message using the below form...
           </Typography>
-          <form
-            ref={form}
-            onSubmit={handleSubmit}
-            name="contact"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-          >
-            <input type="hidden" name="form-name" value="contact" />
+          <form onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="dense"
