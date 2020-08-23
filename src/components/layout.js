@@ -27,11 +27,15 @@ const Layout = ({ children, dispatch, siteIsReady }) => {
   return (
     <>
       <Head />
-      <NavBar />
-      <Dialogs />
-      {children}
-      <Footer />
-      <BottomNav />
+      {siteIsReady ? (
+        <>
+          <NavBar />
+          <Dialogs />
+          {children}
+          <Footer />
+          <BottomNav />
+        </>
+      ) : null}
     </>
   )
 }
