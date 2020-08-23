@@ -60,7 +60,7 @@ const About = () => {
             languages/technologies.
           </Typography>
           <Typography paragraph>
-            I originally hail from England, but I have lived on the island of
+            I'm originally from England, but I have lived on the island of
             Fuerteventura in the Canary Islands for the last few years. Besides
             my work, I also enjoy mountain-biking, playing the piano and
             volunteering at my local dog rescue centre.

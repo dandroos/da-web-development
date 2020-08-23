@@ -65,12 +65,12 @@ const Pricing = () => {
               <SellingPoint
                 icon={Devices}
                 primary="Responsive Layouts"
-                secondary="Designed to look fantastic on mobiles, tablets and desktop computers!"
+                secondary="Your site will look fantastic on mobiles, tablets and desktop computers!"
               />
               <SellingPoint
                 icon={Speed}
                 primary="Lightning fast and reliable hosting"
-                secondary="I chose renowned and reliable hosting for my clients and optimize all content to minimize loading times"
+                secondary="I use renowned and reliable hosting for my clients and optimize all content to minimize loading times"
               />
               <SellingPoint
                 icon={BrandingWatermark}
@@ -105,7 +105,7 @@ const Pricing = () => {
             normalPrice={600}
           >
             <Typography align="center">
-              Ideal for those who want to build a{" "}
+              Ideal for those who want to build an online{" "}
               <strong>client community</strong> and have{" "}
               <strong>more control</strong> over site content.
             </Typography>

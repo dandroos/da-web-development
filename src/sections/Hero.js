@@ -39,7 +39,7 @@ const Hero = ({ dispatch }) => {
           bottom={0}
           left={0}
           bgcolor="secondary.dark"
-          style={{ opacity: 0.8 }}
+          style={{ opacity: 0.6 }}
         />
         <Container>
           <Box
