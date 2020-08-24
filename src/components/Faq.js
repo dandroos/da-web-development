@@ -9,10 +9,10 @@ const Faq = () => {
         FAQ
       </Typography>
       <Question question="What does the maintenance fee cover?">
-        This covers hosting and domain costs as well as my ongoing support for
+        This covers hosting and domain costs as well as ongoing support for
         updates and urgent enquiries. If you need new content/functionality such
-        as a new page, that does not come under the maintenance umbrella so we
-        will agree a fair price separately for the work involved.
+        as a new page, that is not considered maintenance so we will agree a
+        fair price separately for the work involved.
       </Question>
       <Question question="Is there a minimum subscription period?">
         Not at all. You can cancel at any time. Bear in mind that although you

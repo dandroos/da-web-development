@@ -62,17 +62,17 @@ const About = () => {
           <Typography paragraph>
             I'm originally from England, but I have lived on the island of
             Fuerteventura in the Canary Islands for the last few years. Besides
-            my work, I also enjoy mountain-biking, playing the piano and
-            volunteering at my local dog rescue centre.
+            my work, I also enjoy mountain biking, playing the piano and
+            volunteering at my local dog rescue shelter.
           </Typography>
           <Box my={2}>
             <Divider variant="middle" />
           </Box>
           <Box align="center">
             <Typography variant="h5">Elsewhere on the web</Typography>
-            {externalLinks.map(i => (
-              <Tooltip title={i.label.toLowerCase()}>
-                <IconButton onClick={() => window.open(i.link, "_blank")}>
+            {externalLinks.map((i, ind) => (
+              <Tooltip title={i.label.toLowerCase()} key={ind}>
+                <IconButton onClick={() => window.open(i.href, "_blank")}>
                   <i.icon />
                 </IconButton>
               </Tooltip>

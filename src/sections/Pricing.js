@@ -19,7 +19,6 @@ import {
   Speed,
   BrandingWatermark,
   Web,
-  Notes,
   Translate,
   Lock,
   Storage,
@@ -81,11 +80,6 @@ const Pricing = () => {
                 icon={Web}
                 primary="Up to five pages of static content"
                 secondary="Static content are pages that you won't need to update often. e.g. About, Services, Contact"
-              />
-              <SellingPoint
-                icon={Notes}
-                primary="Blog / Latest news functionality"
-                secondary="Keep your visitors coming back by posting content via a bespoke admin area"
               />
               <SellingPoint
                 icon={Translate}
@@ -167,7 +161,7 @@ const Tier = props => (
       titleTypographyProps={{ variant: "h3", align: "center" }}
       title={props.title}
     />
-    <CardContent dividers>
+    <CardContent>
       {props.children}
       <Box py={2} align="center">
         <Typography variant="h6">Special offer!</Typography>

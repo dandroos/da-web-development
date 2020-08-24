@@ -26,7 +26,7 @@ const Contact = () => {
   const [toast, setToast] = useState({
     open: false,
     msg: "",
-    severity: "",
+    severity: "success",
   })
 
   const handleChange = e => {
@@ -99,7 +99,7 @@ const Contact = () => {
               Saturday: 10am - 1pm
             </Typography>
             <Typography variant="h5">Out of hours</Typography>
-            <Typography variant="" paragraph>
+            <Typography paragraph>
               For urgent enquiries you can phone me at any time. For non-urgent
               enquiries, please call during the above hours. Thank you.
             </Typography>
@@ -203,7 +203,7 @@ const Contact = () => {
       <Snackbar
         open={toast.open}
         autoHideDuration={5000}
-        onClose={() => setToast({ open: false, msg: "", severity: "" })}
+        onClose={() => setToast({ open: false, msg: "", severity: "success" })}
       >
         <Alert variant="filled" severity={toast.severity}>
           {toast.msg}

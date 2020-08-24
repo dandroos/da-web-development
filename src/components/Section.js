@@ -18,12 +18,12 @@ const Section = ({ children, id, title, color, shade, elevation }) => {
         boxShadow={elevation}
       >
         <Container>
-          <Reveal left order={1}>
+          <Reveal left order={0}>
             <Typography variant="h2" paragraph>
               {title}
             </Typography>
           </Reveal>
-          <Reveal order={2}>{children}</Reveal>
+          <Reveal order={1}>{children}</Reveal>
         </Container>
       </Box>
     </Reveal>

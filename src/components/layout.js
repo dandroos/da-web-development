@@ -10,17 +10,26 @@ import { setSiteIsReady } from "../state/actions"
 import bgImg from "../images/hero.svg"
 
 const Layout = ({ children, dispatch, siteIsReady }) => {
-  useEffect(() => {
+  const loadAssets = () => {
     const headerFont = new FontFaceObserver("Montserrat")
     const bodyFont = new FontFaceObserver("Poppins")
 
-    Promise.all([headerFont.load(), bodyFont.load()]).then(() => {
-      const svg = new Image()
-      svg.src = bgImg
-      svg.onload = () => {
-        dispatch(setSiteIsReady(true))
+    Promise.all([headerFont.load(), bodyFont.load()]).then(
+      () => {
+        const svg = new Image()
+        svg.src = bgImg
+        svg.onload = () => {
+          dispatch(setSiteIsReady(true))
+        }
+      },
+      () => {
+        loadAssets()
       }
-    })
+    )
+  }
+
+  useEffect(() => {
+    loadAssets()
     //eslint-disable-next-line
   }, [])
 

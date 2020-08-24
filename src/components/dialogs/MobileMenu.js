@@ -73,11 +73,11 @@ const MobileMenu = ({ dispatch, isOpen }) => {
           fluid={data.logo.childImageSharp.fluid}
         />
         <List disablePadding>
-          {navigation.map(i =>
+          {navigation.map((i, indA) =>
             i.dropdown ? (
-              <ListItem>
-                {i.links.map(link => (
-                  <Tooltip title={link.label}>
+              <ListItem key={indA}>
+                {i.links.map((link, indB) => (
+                  <Tooltip title={link.label} key={indB}>
                     <IconButton
                       onClick={() => {
                         window.open(link.href, "_blank")
@@ -94,6 +94,7 @@ const MobileMenu = ({ dispatch, isOpen }) => {
               <MobileNavLink
                 activeClass="active"
                 to={i.href}
+                key={indA}
                 offset={i.label === "Home" ? 0 : -48}
                 smooth={true}
                 spy={true}

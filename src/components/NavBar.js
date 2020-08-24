@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import {
+  Button,
   AppBar,
   Toolbar,
   IconButton,
@@ -51,15 +52,6 @@ const NavBar = ({ dispatch }) => {
       case "mob-menu":
         dispatch(setMobileNav(true))
         break
-      case "facebook":
-        window.open(`https://facebook.com`, "_blank")
-        break
-      case "instagram":
-        window.open(`https://instagram.com`, "_blank")
-        break
-      case "github":
-        window.open(`https://github.com`, "_blank")
-        break
       default:
         break
     }
@@ -88,7 +80,7 @@ const NavBar = ({ dispatch }) => {
       }
       atTop: file(name: { eq: "logo" }) {
         childImageSharp {
-          fixed(height: 55, quality: 100) {
+          fixed(height: 45, quality: 100) {
             ...GatsbyImageSharpFixed_noBase64
           }
         }
@@ -130,29 +122,16 @@ const NavBar = ({ dispatch }) => {
           <Hidden smDown>
             {navigation.map((i, ind) =>
               i.dropdown ? (
-                <>
-                  {ind === navigation.length - 1 ? (
-                    <NavLink
-                      id={i.label.toLowerCase()}
-                      isEnd
-                      onClick={handleClick}
-                      endIcon={
-                        <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
-                      }
-                    >
-                      {i.label}
-                    </NavLink>
-                  ) : (
-                    <NavLink
-                      id={i.label.toLowerCase()}
-                      onClick={handleClick}
-                      endIcon={
-                        <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
-                      }
-                    >
-                      {i.label}
-                    </NavLink>
-                  )}
+                <React.Fragment key={ind}>
+                  <Button
+                    id={i.label.toLowerCase()}
+                    onClick={handleClick}
+                    endIcon={
+                      <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
+                    }
+                  >
+                    {i.label}
+                  </Button>
                   <Popper
                     open={Boolean(anchorEl)}
                     anchorEl={anchorEl}
@@ -165,11 +144,14 @@ const NavBar = ({ dispatch }) => {
                         <Paper variant="outlined">
                           <ClickAwayListener onClickAway={handleClose}>
                             <MenuList disablePadding>
-                              {i.links.map(link => (
+                              {i.links.map((link, indB) => (
                                 <MenuItem
                                   dense
                                   id={link.label.toLowerCase()}
-                                  onClick={handleClick}
+                                  key={indB}
+                                  onClick={() =>
+                                    window.open(link.href, "_blank")
+                                  }
                                 >
                                   <ListItemIcon>
                                     <link.icon />
@@ -183,7 +165,7 @@ const NavBar = ({ dispatch }) => {
                       </Grow>
                     )}
                   </Popper>
-                </>
+                </React.Fragment>
               ) : ind === navigation.length - 1 ? (
                 <NavLink onClick={handleClick} isEnd={true} id={i.href}>
                   {i.label}
@@ -191,6 +173,7 @@ const NavBar = ({ dispatch }) => {
               ) : (
                 <NavLink
                   activeClass="active"
+                  key={ind}
                   to={i.href}
                   offset={-48}
                   smooth={true}
