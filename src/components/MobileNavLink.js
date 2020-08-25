@@ -7,8 +7,9 @@ const MobileNavLink = props => {
   return (
     <ListItem {...props} button id={label.toLowerCase()}>
       <ListItemText
-        primary={label.toLowerCase()}
+        primary={label.toUpperCase()}
         primaryTypographyProps={{
+          color: "inherit",
           style: { textAlign: "center", fontWeight: "inherit" },
         }}
       />

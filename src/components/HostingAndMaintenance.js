@@ -7,6 +7,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Paper,
 } from "@material-ui/core"
 
 const HostingAndMaintenance = () => {
@@ -14,15 +15,18 @@ const HostingAndMaintenance = () => {
     <>
       <Typography variant="h4">Hosting and Maintenance</Typography>
       <Typography>
-        I charge the following fees for hosting and maintenance...
+        We charge the following fees for hosting and maintenance...
       </Typography>
-      <TableContainer style={{ marginBottom: "1.5rem" }}>
+      <TableContainer
+        component={Paper}
+        style={{ marginBottom: "1.5rem", color: "white" }}
+      >
         <Table>
           <TableHead>
             <TableRow>
               <TableCell style={{ width: "50%" }}>Plan</TableCell>
-              <TableCell style={{ width: "25%" }}>Monthly Amount (€)</TableCell>
-              <TableCell style={{ width: "25%" }}>Yearly Amount (€)</TableCell>
+              <TableCell style={{ width: "25%" }}>Pay Monthly (€)</TableCell>
+              <TableCell style={{ width: "25%" }}>Pay Yearly (€)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

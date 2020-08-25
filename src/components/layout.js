@@ -11,21 +11,15 @@ import bgImg from "../images/hero.svg"
 
 const Layout = ({ children, dispatch, siteIsReady }) => {
   const loadAssets = () => {
-    const headerFont = new FontFaceObserver("Montserrat")
-    const bodyFont = new FontFaceObserver("Poppins")
+    const font = new FontFaceObserver("Overpass")
 
-    Promise.all([headerFont.load(), bodyFont.load()]).then(
-      () => {
-        const svg = new Image()
-        svg.src = bgImg
-        svg.onload = () => {
-          dispatch(setSiteIsReady(true))
-        }
-      },
-      () => {
-        loadAssets()
+    font.load().then(() => {
+      const svg = new Image()
+      svg.src = bgImg
+      svg.onload = () => {
+        dispatch(setSiteIsReady(true))
       }
-    )
+    }, loadAssets)
   }
 
   useEffect(() => {

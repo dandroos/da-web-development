@@ -25,51 +25,58 @@ import {
   Add,
   Create,
   WebAsset,
-  Info,
   Call,
 } from "@material-ui/icons"
 import Section from "../components/Section"
 import HostingAndMaintenance from "../components/HostingAndMaintenance"
 import Faq from "../components/Faq"
 import { scroller } from "react-scroll"
+import svg from "../images/pricing.svg"
 
 const handleClick = () => {
   scroller.scrollTo("contact", { smooth: true, offset: -48, hashSpy: true })
 }
 
 const Pricing = () => {
-  const theme = useTheme()
   return (
-    <Section id="pricing" title="Pricing" elevation={1}>
+    <Section
+      id="pricing"
+      title="Pricing"
+      color="primary"
+      shade="main"
+      elevation={1}
+    >
+      <Box align="center">
+        <img style={{ maxWidth: 550 }} src={svg} />
+      </Box>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Tier
             title="Standard"
-            bg={theme.palette.primary.dark}
             btnColor="secondary"
             price={300}
             normalPrice={400}
           >
             <Typography align="center">
-              Ideal for <strong>small businesses</strong>,{" "}
-              <strong>startups</strong> and <strong>artists</strong>.
+              Ideal for <strong>small businesses</strong> and{" "}
+              <strong>startups</strong>.
             </Typography>
             <List>
               <ListSubheader>What's included?</ListSubheader>
               <SellingPoint
                 icon={WebAsset}
                 primary="Domain name"
-                secondary="To access your site, you'll need a domain name e.g. google.com. Choose from .com, .org or .net. "
+                secondary="To access your site, you'll need a domain name e.g. google.com. Choose from a range including .com, .org and .net. "
               />
               <SellingPoint
                 icon={Devices}
                 primary="Responsive Layouts"
-                secondary="Your site will look fantastic on mobiles, tablets and desktop computers!"
+                secondary="Your site will look fantastic on mobiles, tablets and desktop computers alike!"
               />
               <SellingPoint
                 icon={Speed}
-                primary="Lightning fast and reliable hosting"
-                secondary="I use renowned and reliable hosting for my clients and optimize all content to minimize loading times"
+                primary="Fast and reliable hosting"
+                secondary="I use renowned and reliable hosting and optimize all content to minimize loading times"
               />
               <SellingPoint
                 icon={BrandingWatermark}
@@ -79,12 +86,12 @@ const Pricing = () => {
               <SellingPoint
                 icon={Web}
                 primary="Up to five pages of static content"
-                secondary="Static content are pages that you won't need to update often. e.g. About, Services, Contact"
+                secondary="Static content is content that you won't need to update often. e.g. About, Services, Contact"
               />
               <SellingPoint
                 icon={Translate}
                 primary="Up to two site languages"
-                secondary="Provide me with the translations to make your site bilingual!"
+                secondary="Provide us with the translations and we'll make your site bilingual!"
                 noDivider
               />
             </List>
@@ -94,14 +101,13 @@ const Pricing = () => {
           <Tier
             title="Premium"
             price={500}
-            bg={theme.palette.secondary.dark}
             btnColor="primary"
             normalPrice={600}
           >
             <Typography align="center">
               Ideal for those who want to build an online{" "}
               <strong>client community</strong> and have{" "}
-              <strong>more control</strong> over site content.
+              <strong>more immediate control</strong> over site content.
             </Typography>
             <List>
               <ListSubheader>What's included?</ListSubheader>
@@ -113,11 +119,6 @@ const Pricing = () => {
                 icon={Lock}
                 primary="Authentication"
                 secondary="Site visitors will be able to register and login to access special features, restricted content, etc. This helps you to build a community and understand more about your clients."
-              />
-              <SellingPoint
-                icon={Storage}
-                primary="Database storage (x1)"
-                secondary="As well as storing authentication details (usernames and encrypted passwords), you can use a database to store all kinds of data to encourage visitor interaction. e.g. user profiles, site viewing preferences etc."
               />
               <SellingPoint
                 icon={Create}
@@ -138,9 +139,8 @@ const Pricing = () => {
                 onClick={handleClick}
                 variant="contained"
                 size="large"
-                color="primary"
               >
-                Contact me
+                Contact us
               </Button>
             </Box>
             <Typography>...and we can work it out! :o)</Typography>
@@ -156,7 +156,7 @@ const Pricing = () => {
 }
 
 const Tier = props => (
-  <Card style={{ backgroundColor: props.bg }}>
+  <Card>
     <CardHeader
       titleTypographyProps={{ variant: "h3", align: "center" }}
       title={props.title}
@@ -172,11 +172,12 @@ const Tier = props => (
       <Box align="center">
         <Button
           size="large"
-          startIcon={<Info />}
+          startIcon={<Call />}
           onClick={handleClick}
-          variant="outlined"
+          variant="contained"
+          color="primary"
         >
-          Contact me for further info
+          Contact us
         </Button>
       </Box>
     </CardContent>

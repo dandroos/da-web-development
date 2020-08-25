@@ -31,7 +31,7 @@ const MobileMenu = ({ dispatch, isOpen }) => {
   const classes = useStyles()
   const data = useStaticQuery(graphql`
     {
-      logo: file(name: { eq: "logo" }) {
+      logo: file(name: { eq: "logo_mobmenu" }) {
         childImageSharp {
           fluid(maxWidth: 350) {
             ...GatsbyImageSharpFluid_noBase64
@@ -57,21 +57,38 @@ const MobileMenu = ({ dispatch, isOpen }) => {
       <Fab
         onClick={handleClose}
         color="secondary"
-        style={{ position: "fixed", top: 15, right: 15 }}
+        style={{ position: "fixed", top: 15, right: 15, zIndex: 50 }}
       >
         <Close />
       </Fab>
       <Box
+        position="fixed"
+        display="flex"
+        alignItems="center"
+        justifyItems="center"
+        top={0}
+        right={0}
+        bottom={0}
+        left={0}
+      >
+        <Img
+          style={{
+            opacity: 0.1,
+            maxWidth: 350,
+            width: "60%",
+            margin: "auto",
+          }}
+          fluid={data.logo.childImageSharp.fluid}
+        />
+      </Box>
+      <Box
         minHeight="100vh"
         display="flex"
+        color={theme.palette.primary.contrastText}
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
       >
-        <Img
-          style={{ maxWidth: 350, width: "60%", marginBottom: "1rem" }}
-          fluid={data.logo.childImageSharp.fluid}
-        />
         <List disablePadding>
           {navigation.map((i, indA) =>
             i.dropdown ? (
@@ -79,6 +96,7 @@ const MobileMenu = ({ dispatch, isOpen }) => {
                 {i.links.map((link, indB) => (
                   <Tooltip title={link.label} key={indB}>
                     <IconButton
+                      color="inherit"
                       onClick={() => {
                         window.open(link.href, "_blank")
                         dispatch(setMobileNav(false))

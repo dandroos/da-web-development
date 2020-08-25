@@ -78,7 +78,7 @@ const NavBar = ({ dispatch }) => {
           }
         }
       }
-      atTop: file(name: { eq: "logo" }) {
+      atTop: file(name: { eq: "logo_blue" }) {
         childImageSharp {
           fixed(height: 45, quality: 100) {
             ...GatsbyImageSharpFixed_noBase64
@@ -115,7 +115,12 @@ const NavBar = ({ dispatch }) => {
           )}
           <Box flexGrow={1} />
           <Hidden mdUp>
-            <IconButton edge="end" id="mob-menu" onClick={handleClick}>
+            <IconButton
+              color="inherit"
+              edge="end"
+              id="mob-menu"
+              onClick={handleClick}
+            >
               <MenuIcon />
             </IconButton>
           </Hidden>
@@ -125,6 +130,7 @@ const NavBar = ({ dispatch }) => {
                 <React.Fragment key={ind}>
                   <Button
                     id={i.label.toLowerCase()}
+                    color="inherit"
                     onClick={handleClick}
                     endIcon={
                       <ArrowDropDown id={`${i.label.toLowerCase()}-arrow`} />
@@ -156,7 +162,7 @@ const NavBar = ({ dispatch }) => {
                                   <ListItemIcon>
                                     <link.icon />
                                   </ListItemIcon>
-                                  {link.label.toLowerCase()}
+                                  {link.label.toUpperCase()}
                                 </MenuItem>
                               ))}
                             </MenuList>

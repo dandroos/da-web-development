@@ -29,16 +29,16 @@ const About = () => {
     <Section
       id="about"
       title="About"
-      color="primary"
-      shade="main"
+      color="background"
+      shade="default"
       elevation={2}
     >
       <Grid container alignItems="center" spacing={2}>
         <Grid item xs={12} md={3}>
           <Box
             p={1}
-            bgcolor="common.white"
-            style={{ boxShadow: "0 0 .4rem inset" }}
+            bgcolor="primary.light"
+            style={{ boxShadow: "0 .1rem .4rem rgba(0,0,0,.4)" }}
           >
             <Img fluid={data.file.childImageSharp.fluid} />
           </Box>
@@ -46,7 +46,7 @@ const About = () => {
         <Grid item xs={12} md={9}>
           <Typography variant="subtitle1" paragraph>
             Hello! My name is Dave and I set up{" "}
-            <strong>prospr web development</strong> in 2020. I have been
+            <strong>Prospr Web Development</strong> in 2020. I have been
             building websites and applications with code for years.
           </Typography>
           <Typography paragraph>
@@ -71,8 +71,11 @@ const About = () => {
           <Box align="center">
             <Typography variant="h5">Elsewhere on the web</Typography>
             {externalLinks.map((i, ind) => (
-              <Tooltip title={i.label.toLowerCase()} key={ind}>
-                <IconButton onClick={() => window.open(i.href, "_blank")}>
+              <Tooltip title={i.label} key={ind}>
+                <IconButton
+                  color="primary"
+                  onClick={() => window.open(i.href, "_blank")}
+                >
                   <i.icon />
                 </IconButton>
               </Tooltip>

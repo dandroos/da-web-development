@@ -8,36 +8,30 @@ import {
   Typography,
   Box,
   Divider,
-  useTheme,
 } from "@material-ui/core"
 import { setDoINeedASite } from "../../state/actions"
+import svg from "../../images/question.svg"
 
 const DoINeedASite = ({ dispatch, isOpen }) => {
-  const theme = useTheme()
-
   const handleClose = () => {
     dispatch(setDoINeedASite(false))
   }
   return (
-    <Dialog
-      open={isOpen}
-      onClose={handleClose}
-      PaperProps={{ style: { backgroundColor: theme.palette.primary.dark } }}
-      maxWidth="md"
-      fullWidth
-    >
+    <Dialog open={isOpen} onClose={handleClose} maxWidth="md" fullWidth>
       <DialogContent>
         <Box align="center">
           <Typography variant="h4">
             "I already have a Facebook page, do I need a website?"
           </Typography>
+          <img src={svg} />
           <Typography variant="subtitle1">
-            The short answer is ‘yes’. Social media is a necessity for any
-            business to help you build an audience and get to know who they are.
-            That being said, it should not be a replacement for your company
-            site. Your website should be the foundation of your online presence
-            on which social media platforms build upon. Of course my opinion is
-            biased, so I will give you some good reasons for my opinion...
+            The short answer is <strong>"yes"</strong>. Social media is a
+            necessity for any business to help you build a client base and get
+            to know who they are. That being said, it should not be a
+            replacement for your company site. Your website should be the
+            foundation of your online presence on which social media platforms
+            build upon. Of course my opinion is biased, so I will give you some
+            good reasons for my opinion...
           </Typography>
         </Box>
         <Box my={2}>

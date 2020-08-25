@@ -7,6 +7,7 @@ const NavLink = props => {
   return (
     <Button
       {...props}
+      color="inherit"
       endIcon={endIcon ? endIcon : null}
       style={{ marginRight: 20 }}
     >

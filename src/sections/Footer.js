@@ -7,7 +7,7 @@ import Reveal from "../components/Reveal"
 const Footer = () => {
   const data = useStaticQuery(graphql`
     {
-      logo: file(name: { eq: "logo" }) {
+      logo: file(name: { eq: "logo_blue" }) {
         childImageSharp {
           fluid(maxWidth: 200, quality: 100) {
             ...GatsbyImageSharpFluid
@@ -37,7 +37,7 @@ const Footer = () => {
             All content &copy; {getCopyrightYear()} prospr web development
           </Typography>
           <Typography variant="caption" display="block" paragraph>
-            Illustration courtesy of{" "}
+            Illustrations courtesy of{" "}
             <Link href="https://www.freepik.com" target="_blank">
               Freepik
             </Link>

@@ -8,8 +8,9 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemIcon,
   Snackbar,
+  ListItemSecondaryAction,
+  IconButton,
 } from "@material-ui/core"
 import { Alert } from "@material-ui/lab"
 import { Send, Phone, Email, WhatsApp } from "@material-ui/icons"
@@ -88,10 +89,10 @@ const Contact = () => {
 
   return (
     <>
-      <Section id="contact" title="Contact" color="secondary" shade="dark">
+      <Section id="contact" title="Contact" color="secondary" shade="light">
         <Grid container justify="center" alignItems="center" spacing={2}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h5">Contact Hours</Typography>
+            <Typography variant="h5">Contact hours</Typography>
             <Typography variant="caption">(All times are GMT)</Typography>
             <Typography paragraph>
               Weekdays: 8am - 8pm
@@ -109,18 +110,21 @@ const Contact = () => {
                 primaryText="Phone"
                 secondaryText={contactDetails.phone.display}
                 link={`tel:+${contactDetails.phone.data}`}
+                action="Call us"
               />
               <ContactMethod
                 Icon={WhatsApp}
                 primaryText="WhatsApp"
                 secondaryText={contactDetails.phone.display}
                 link={`https://wa.me/${contactDetails.phone.data}`}
+                action="Call/Message us"
               />
               <ContactMethod
                 Icon={Email}
                 primaryText="Email"
                 secondaryText={contactDetails.email}
                 link={`mailto:${contactDetails.email}`}
+                action="Email us"
                 noDivider
               />
             </List>
@@ -139,9 +143,10 @@ const Contact = () => {
             >
               <input type="hidden" name="form-name" value="contact" />
               <TextField
-                variant="outlined"
+                color="secondary"
+                InputProps={{ style: { color: "white" } }}
                 margin="dense"
-                label="name"
+                label="Name"
                 onChange={handleChange}
                 value={fields.name}
                 id="name"
@@ -150,10 +155,10 @@ const Contact = () => {
                 fullWidth
               />
               <TextField
-                variant="outlined"
+                InputProps={{ style: { color: "white" } }}
                 type="email"
                 margin="dense"
-                label="email"
+                label="Email"
                 onChange={handleChange}
                 value={fields.email}
                 id="email"
@@ -162,9 +167,9 @@ const Contact = () => {
                 fullWidth
               />
               <TextField
-                variant="outlined"
+                InputProps={{ style: { color: "white" } }}
                 margin="dense"
-                label="phone"
+                label="Phone"
                 placeholder="optional"
                 onChange={handleChange}
                 value={fields.phone}
@@ -173,16 +178,15 @@ const Contact = () => {
                 fullWidth
               />
               <TextField
+                InputProps={{ style: { color: "white" } }}
                 multiline
                 margin="dense"
-                variant="outlined"
-                label="message"
+                label="Message"
                 onChange={handleChange}
                 value={fields.message}
                 id="message"
                 name="message"
                 required
-                rows={4}
                 fullWidth
               />
               <Box align="right">
@@ -219,17 +223,24 @@ const ContactMethod = ({
   secondaryText,
   link,
   noDivider,
-}) => (
-  <ListItem
-    button
-    divider={!noDivider}
-    onClick={() => window.open(link, "blank")}
-  >
-    <ListItemIcon>
-      <Icon />
-    </ListItemIcon>
-    <ListItemText primary={primaryText} secondary={secondaryText} />
-  </ListItem>
-)
+}) => {
+  const handleClick = () => {
+    window.open(link, "_blank")
+  }
+  return (
+    <ListItem button divider={!noDivider} onClick={handleClick}>
+      <ListItemText
+        primary={primaryText}
+        secondary={secondaryText}
+        secondaryTypographyProps={{ color: "grey.200" }}
+      />
+      <ListItemSecondaryAction>
+        <IconButton color="inherit" onClick={handleClick}>
+          <Icon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
+  )
+}
 
 export default Contact

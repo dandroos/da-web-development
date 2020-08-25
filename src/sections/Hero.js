@@ -1,12 +1,14 @@
 import React from "react"
 import { connect } from "react-redux"
 import {
+  Hidden,
   Box,
   Typography,
   Button,
   Container,
   Grid,
   useMediaQuery,
+  useTheme,
 } from "@material-ui/core"
 import { Info, Help } from "@material-ui/icons"
 import { scroller } from "react-scroll"
@@ -15,7 +17,11 @@ import { setDoINeedASite } from "../state/actions"
 import Reveal from "../components/Reveal"
 
 const Hero = ({ dispatch }) => {
-  const isMobile = useMediaQuery(`(max-width:420px)`)
+  const isMobile = useMediaQuery(`(max-width:420px), (max-height:415px)`)
+  const hideOverlay = useMediaQuery(
+    `(min-width:420px) and (orientation: portrait)`
+  )
+  const theme = useTheme()
   return (
     <Reveal order={0}>
       <Box
@@ -26,31 +32,26 @@ const Hero = ({ dispatch }) => {
         justifyContent="flex-end"
         position="relative"
         style={{
-          backgroundImage: `url('${svg}')`,
+          backgroundImage: `${
+            hideOverlay
+              ? ""
+              : `linear-gradient(${theme.palette.background.default}bb, ${theme.palette.background.default}bb),`
+          }
+        url('${svg}')
+        `,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center 17.5%",
         }}
       >
-        <Box
-          position="absolute"
-          top={0}
-          right={0}
-          bottom={0}
-          left={0}
-          bgcolor="secondary.dark"
-          style={{ opacity: 0.7 }}
-        />
         <Container>
           <Box
-            mb={isMobile ? 2 : 8}
+            mb={isMobile ? 2 : hideOverlay ? 2 : 8}
             position="relative"
             borderRadius="borderRadius"
           >
             <Reveal order={1} left>
-              <Typography variant="h2">
-                Maximize your online potential!
-              </Typography>
+              <Typography variant="h2">"Do you have a website?"</Typography>
             </Reveal>
             <Reveal order={2} left>
               <Typography variant="subtitle1" paragraph>

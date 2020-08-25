@@ -6,7 +6,7 @@ const Head = () => {
     <>
       <Helmet>
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins&family=Montserrat&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Overpass&display=swap"
           rel="stylesheet"
         />
       </Helmet>

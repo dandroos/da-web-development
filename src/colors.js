@@ -1,4 +1,4 @@
 module.exports = {
-  primary: "#6b9684",
-  secondary: "#55796A",
+  primary: "#0e3c6a",
+  secondary: "#002351",
 }

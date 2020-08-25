@@ -39,18 +39,21 @@ const Faq = () => {
       </Question>
       <Question question="My question is not answered here...">
         No problem!{" "}
-        <Link
-          style={{ cursor: "pointer" }}
-          onClick={() =>
-            scroller.scrollTo("contact", {
-              smooth: true,
-              offset: -48,
-              hashSpy: true,
-            })
-          }
-        >
-          Contact me
-        </Link>{" "}
+        <strong>
+          <Link
+            color="inherit"
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              scroller.scrollTo("contact", {
+                smooth: true,
+                offset: -48,
+                hashSpy: true,
+              })
+            }
+          >
+            Contact me
+          </Link>
+        </strong>{" "}
         and I'll answer it for you!
       </Question>
     </>

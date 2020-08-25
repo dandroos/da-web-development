@@ -9,7 +9,7 @@ import Contact from "../sections/Contact"
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="prospr web development" />
+    <SEO />
     <Hero />
     <Pricing />
     <About />
