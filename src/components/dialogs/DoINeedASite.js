@@ -23,7 +23,13 @@ const DoINeedASite = ({ dispatch, isOpen }) => {
           <Typography variant="h4">
             "I already have a Facebook page, do I need a website?"
           </Typography>
-          <img src={svg} />
+          <Box align="center">
+            <img
+              src={svg}
+              alt="Questions illustration"
+              style={{ maxWidth: 300 }}
+            />
+          </Box>
           <Typography variant="subtitle1">
             The short answer is <strong>"yes"</strong>. Social media is a
             necessity for any business to help you build a client base and get

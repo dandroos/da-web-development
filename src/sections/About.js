@@ -28,16 +28,16 @@ const About = () => {
   return (
     <Section
       id="about"
-      title="About"
-      color="background"
-      shade="default"
+      title="Who is Prospr?"
+      color="primary"
+      shade="light"
       elevation={2}
     >
       <Grid container alignItems="center" spacing={2}>
         <Grid item xs={12} md={3}>
           <Box
             p={1}
-            bgcolor="primary.light"
+            bgcolor="background.default"
             style={{ boxShadow: "0 .1rem .4rem rgba(0,0,0,.4)" }}
           >
             <Img fluid={data.file.childImageSharp.fluid} />
@@ -73,7 +73,7 @@ const About = () => {
             {externalLinks.map((i, ind) => (
               <Tooltip title={i.label} key={ind}>
                 <IconButton
-                  color="primary"
+                  color="inherit"
                   onClick={() => window.open(i.href, "_blank")}
                 >
                   <i.icon />

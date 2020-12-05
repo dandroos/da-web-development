@@ -7,13 +7,13 @@ export default [
     dropdown: false,
   },
   {
-    label: "Pricing",
-    href: "pricing",
+    label: "Who is Prospr?",
+    href: "about",
     dropdown: false,
   },
   {
-    label: "About",
-    href: "about",
+    label: "Products and Services",
+    href: "products-and-services",
     dropdown: false,
   },
   {

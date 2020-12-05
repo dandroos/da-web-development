@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import {
-  Hidden,
   Box,
   Typography,
   Button,
@@ -13,13 +12,18 @@ import {
 import { Info, Help } from "@material-ui/icons"
 import { scroller } from "react-scroll"
 import svg from "../images/hero.svg"
+import cutout from "../images/hero-cutout.svg"
 import { setDoINeedASite } from "../state/actions"
 import Reveal from "../components/Reveal"
 
-const Hero = ({ dispatch }) => {
+const Hero = ({ dispatch, showCutout }) => {
   const isMobile = useMediaQuery(`(max-width:420px), (max-height:415px)`)
   const hideOverlay = useMediaQuery(
-    `(min-width:420px) and (orientation: portrait)`
+    `(min-height: 812px) and (orientation: portrait) and (max-width: 1366px) and (max-aspect-ratio: 85/100), (min-width: 1360px) and (max-height: 970px) and (orientation: landscape)`
+  )
+  const isPortrait = useMediaQuery(`(orientation: portrait)`)
+  const restrictTextWidth = useMediaQuery(
+    `(min-width:700px) and (orientation: portrait)`
   )
   const theme = useTheme()
   return (
@@ -35,18 +39,28 @@ const Hero = ({ dispatch }) => {
           backgroundImage: `${
             hideOverlay
               ? ""
-              : `linear-gradient(${theme.palette.background.default}bb, ${theme.palette.background.default}bb),`
+              : `linear-gradient(${theme.palette.background.default}dd, ${theme.palette.background.default}dd),`
           }
         url('${svg}')
         `,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center 17.5%",
+          backgroundPosition: `${isMobile ? "center" : "97.5%"} 17.5%`,
         }}
       >
-        <Container>
+        {showCutout ? (
           <Box
-            mb={isMobile ? 2 : hideOverlay ? 2 : 8}
+            position="absolute"
+            top={0}
+            right={0}
+            bottom={0}
+            left={0}
+            style={{ background: `url(${cutout})`, backgroundSize: "cover" }}
+          />
+        ) : null}
+        <Container maxWidth="xl">
+          <Box
+            mb={isMobile ? 2 : isPortrait ? 2 : 8}
             position="relative"
             borderRadius="borderRadius"
           >
@@ -54,12 +68,15 @@ const Hero = ({ dispatch }) => {
               <Typography variant="h2">"Do you have a website?"</Typography>
             </Reveal>
             <Reveal order={2} left>
-              <Typography variant="subtitle1" paragraph>
-                Don't rely on social media alone to promote yourself. A
-                professional website gives you <strong>authenticity</strong>,{" "}
-                <strong>credibility</strong>, <strong>complete control</strong>{" "}
-                over your brand and <strong>maximum client reach</strong>.
-              </Typography>
+              <Box maxWidth={restrictTextWidth ? "auto" : 700}>
+                <Typography variant="subtitle1" paragraph>
+                  Don't rely on social media alone to promote yourself. A
+                  professional website gives you <strong>authenticity</strong>,{" "}
+                  <strong>credibility</strong>,{" "}
+                  <strong>complete control</strong> over your brand and{" "}
+                  <strong>maximum client reach</strong>.
+                </Typography>
+              </Box>
             </Reveal>
             <Reveal order={3} left>
               <Box mt={2} align="inherit">
@@ -71,14 +88,14 @@ const Hero = ({ dispatch }) => {
                       size="large"
                       startIcon={<Info />}
                       onClick={() =>
-                        scroller.scrollTo("pricing", {
+                        scroller.scrollTo("about", {
                           smooth: true,
                           offset: -48,
                           hashSpy: true,
                         })
                       }
                     >
-                      View pricing plans
+                      Who is Prospr?
                     </Button>
                   </Grid>
                   <Grid item>
@@ -102,4 +119,8 @@ const Hero = ({ dispatch }) => {
   )
 }
 
-export default connect()(Hero)
+const mapStateToProps = state => ({
+  showCutout: state.showSvgCutout,
+})
+
+export default connect(mapStateToProps)(Hero)

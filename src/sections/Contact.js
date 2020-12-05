@@ -89,7 +89,7 @@ const Contact = () => {
 
   return (
     <>
-      <Section id="contact" title="Contact" color="secondary" shade="light">
+      <Section id="contact" title="Contact" color="background" shade="default">
         <Grid container justify="center" alignItems="center" spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Contact hours</Typography>
@@ -229,11 +229,7 @@ const ContactMethod = ({
   }
   return (
     <ListItem button divider={!noDivider} onClick={handleClick}>
-      <ListItemText
-        primary={primaryText}
-        secondary={secondaryText}
-        secondaryTypographyProps={{ color: "grey.200" }}
-      />
+      <ListItemText primary={primaryText} secondary={secondaryText} />
       <ListItemSecondaryAction>
         <IconButton color="inherit" onClick={handleClick}>
           <Icon />

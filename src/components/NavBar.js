@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   },
 })
 
-const NavBar = ({ dispatch }) => {
+const NavBar = ({ dispatch, cutoutShowing }) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -78,10 +78,17 @@ const NavBar = ({ dispatch }) => {
           }
         }
       }
-      atTop: file(name: { eq: "logo_blue" }) {
+      atTopBlue: file(name: { eq: "logo_blue" }) {
         childImageSharp {
           fixed(height: 45, quality: 100) {
             ...GatsbyImageSharpFixed_noBase64
+          }
+        }
+      }
+      atTopWhite: file(name: { eq: "logo" }) {
+        childImageSharp {
+          fixed(height: 65, quality: 100) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
@@ -99,12 +106,21 @@ const NavBar = ({ dispatch }) => {
           style={{ transition: "all .2s" }}
         >
           {atTop ? (
-            <Img
-              fixed={data.atTop.childImageSharp.fixed}
-              style={{
-                marginTop: "1.5rem",
-              }}
-            />
+            cutoutShowing ? (
+              <Img
+                fixed={data.atTopWhite.childImageSharp.fixed}
+                style={{
+                  marginTop: "1.5rem",
+                }}
+              />
+            ) : (
+              <Img
+                fixed={data.atTopBlue.childImageSharp.fixed}
+                style={{
+                  marginTop: "1.5rem",
+                }}
+              />
+            )
           ) : (
             <Box id="logo" onClick={handleClick}>
               <Img
@@ -198,4 +214,8 @@ const NavBar = ({ dispatch }) => {
   )
 }
 
-export default connect()(NavBar)
+const mapStateToProps = state => ({
+  cutoutShowing: state.showSvgCutout,
+})
+
+export default connect(mapStateToProps)(NavBar)

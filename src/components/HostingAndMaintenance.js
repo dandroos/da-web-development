@@ -14,8 +14,8 @@ const HostingAndMaintenance = () => {
   return (
     <>
       <Typography variant="h4">Hosting and Maintenance</Typography>
-      <Typography>
-        We charge the following fees for hosting and maintenance...
+      <Typography paragraph>
+        I charge the following fees for hosting and maintenance...
       </Typography>
       <TableContainer
         component={Paper}
@@ -24,24 +24,24 @@ const HostingAndMaintenance = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell style={{ width: "50%" }}>Plan</TableCell>
+              <TableCell style={{ width: "50%" }} />
               <TableCell style={{ width: "25%" }}>Pay Monthly (€)</TableCell>
               <TableCell style={{ width: "25%" }}>Pay Yearly (€)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>Standard</TableCell>
-              <TableCell>20</TableCell>
-              <TableCell>200</TableCell>
+              <TableCell>Priority maintenance</TableCell>
+              <TableCell>10</TableCell>
+              <TableCell>100</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Premium</TableCell>
-              <TableCell>30</TableCell>
-              <TableCell>300</TableCell>
+              <TableCell>Hosting (core site only)</TableCell>
+              <TableCell>10</TableCell>
+              <TableCell>100</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Custom</TableCell>
+              <TableCell>Additional product subscriptions</TableCell>
               <TableCell>TBA</TableCell>
               <TableCell>TBA</TableCell>
             </TableRow>
